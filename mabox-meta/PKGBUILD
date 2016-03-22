@@ -1,0 +1,69 @@
+pkgbase=mabox-meta
+arch=('i686' 'x86_64')
+pkgname=('mabox-java'
+	 'mabox-aur'
+         'mabox-lamp'
+)
+
+pkgver=2016.03
+pkgrel=1
+url=
+license=('GPL')
+
+package_mabox-java() {
+	pkgdesc="MaboxOS Java support (Meta-PKG)"
+	arch=any
+	depends=("jdk8-openjdk"
+		"jre8-openjdk-headless"
+		"jre8-openjdk"
+		"icedtea-web")
+}
+
+package_mabox-aur() {
+	pkgdesc="MaboxOS AUR support (Meta-PKG)"
+	if [ "$CARCH" = "i686" ]; then
+	depends=("autoconf"
+		 "automake"
+		 "binutils"
+		 "bison"
+		 "fakeroot"
+		 "flex"
+		 "gcc"
+		 "libtool"
+		 "m4"
+		 "make"
+		 "patch"
+		 "git"
+		 "patchutils"
+		 "svn"
+		 "yaourt")
+	elif [ "$CARCH" = "x86_64" ]; then
+	depends=("autoconf"
+		 "automake"
+		 "binutils"
+		 "bison"
+		 "fakeroot"
+		 "flex"
+		 "lib32-flex"
+		 "gcc-multilib"
+		 "libtool"
+		 "m4"
+		 "make"
+		 "patch"
+		 "git"
+		 "patchutils"
+		 "svn"
+		 "yaourt")
+}
+
+package_mabox-lamp() {
+	pkgdesc="MaboxOS LAMP (Meta-PKG)"
+	arch=any
+	depends=("apache"
+	         "php-apache"
+	         "php"
+	         "php-mcrypt"
+	         "mariadb"
+	         "mariadb-clients"
+	         "phpmyadmin")
+}
