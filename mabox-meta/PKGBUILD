@@ -1,18 +1,16 @@
 pkgbase=mabox-meta
-arch=('i686' 'x86_64')
 pkgname=('mabox-java'
 	 'mabox-aur'
          'mabox-lamp'
 )
-
+arch=('i686' 'x86_64')
 pkgver=2016.03
 pkgrel=1
-url=
 license=('GPL')
 
 package_mabox-java() {
 	pkgdesc="MaboxOS Java support (Meta-PKG)"
-	arch=any
+	arch=('any')
 	depends=("jdk8-openjdk"
 		"jre8-openjdk-headless"
 		"jre8-openjdk"
@@ -54,11 +52,12 @@ package_mabox-aur() {
 		 "patchutils"
 		 "svn"
 		 "yaourt")
+   fi
 }
 
 package_mabox-lamp() {
 	pkgdesc="MaboxOS LAMP (Meta-PKG)"
-	arch=any
+	arch=('any')
 	depends=("apache"
 	         "php-apache"
 	         "php"
