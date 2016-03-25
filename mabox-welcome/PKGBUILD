@@ -1,6 +1,6 @@
 pkgname=mabox-welcome
 pkgver=20160323
-pkgrel=1
+pkgrel=4
 pkgdesc="Welcome script for Mabox"
 arch=(any)
 url="https://github.com/MaboxOS/$pkgname"
@@ -13,6 +13,6 @@ md5sums=('SKIP')
 package () {
 	install -dm755 $pkgdir/usr/lib/mabox/mabox-welcome
 	cp $pkgname/mabox-welcome/* $pkgdir/usr/lib/mabox/mabox-welcome
-	install -dm755 $pkgdir/bin
-	cp $pkgname/mb-welcome $pkgdir/bin
+	install -dm755 $pkgdir/usr/bin
+	cp $pkgname/mb-welcome $pkgdir/usr/bin
 }
