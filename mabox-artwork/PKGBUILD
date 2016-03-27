@@ -1,7 +1,7 @@
-pkgname=mabox-themes
-pkgver=20160325
-pkgrel=2
-pkgdesc="Themes for for Mabox"
+pkgname=mabox-artwork
+pkgver=20160326
+pkgrel=1
+pkgdesc="Artwork for Mabox"
 arch=(any)
 url="https://github.com/MaboxOS/$pkgname"
 license=(GPL)
@@ -11,9 +11,9 @@ source=("git+$url.git")
 md5sums=('SKIP')
 
 package () {
-	install -dm755 $pkgdir/usr/share/themes
+	install -dm755 $pkgdir/usr/share/backgrounds
 	rm -r $pkgname/.git
-	cp -r $pkgname/* $pkgdir/usr/share/themes/
+	cp -r $pkgname/* $pkgdir/usr/share/backgrounds/
 	
 	
 	
