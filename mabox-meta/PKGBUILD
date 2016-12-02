@@ -1,3 +1,6 @@
+# Maintainer: Napcok <napcok [at] gmail [dot] com>
+# Contributor: Piotr Górski <lucjan.lucjanov@gmail.com>
+
 pkgbase=mabox-meta
 pkgname=('mabox-java'
 	 'mabox-aur'

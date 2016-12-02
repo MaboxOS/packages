@@ -1,5 +1,8 @@
+# Maintainer: Napcok <napcok [at] gmail [dot] com>
+# Contributor: Piotr Górski <lucjan.lucjanov@gmail.com>
+
 pkgname=mabox-utilities
-pkgver=20160325
+pkgver=20161118.b535b2f
 pkgrel=1
 pkgdesc="Utilities for Mabox"
 arch=(any)
@@ -10,7 +13,24 @@ makedepends=('git')
 source=("git+$url.git")
 md5sums=('SKIP')
 
+pkgver() {
+  # Mimics ABS pkgver described like this:
+  # Commit date + git rev-parse --short origin/master
+  cd mabox-utilities
+  (
+  git show --format='%cI' -q master | sed 's/T.*//g;s/-//g'
+  echo .
+  git rev-parse --short master
+  ) | tr -d '\n'
+}
+
 package () {
 	install -dm755 $pkgdir/usr/bin
 	cp $pkgname/bin/* $pkgdir/usr/bin
+	install -dm755 $pkgdir/usr/share/mbcc
+	cp -r $pkgname/mbcc/* $pkgdir/usr/share/mbcc
+	install -dm755 $pkgdir/usr/share/mbstyler
+	cp $pkgname/mbstyler/* $pkgdir/usr/share/mbstyler
+	install -dm755 $pkgdir/usr/share/icons
+	cp $pkgname/icons/* $pkgdir/usr/share/icons
 }

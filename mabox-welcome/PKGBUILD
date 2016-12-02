@@ -1,6 +1,9 @@
+# Maintainer: Napcok <napcok [at] gmail [dot] com>
+# Contributor: Piotr Górski <lucjan.lucjanov@gmail.com>
+
 pkgname=mabox-welcome
-pkgver=20160323
-pkgrel=4
+pkgver=20160323.f453972
+pkgrel=1
 pkgdesc="Welcome script for Mabox"
 arch=(any)
 url="https://github.com/MaboxOS/$pkgname"
@@ -9,6 +12,17 @@ depends=()
 makedepends=('git')
 source=("git+$url.git")
 md5sums=('SKIP')
+
+pkgver() {
+  # Mimics ABS pkgver described like this:
+  # Commit date + git rev-parse --short origin/master
+  cd mabox-welcome
+  (
+  git show --format='%cI' -q master | sed 's/T.*//g;s/-//g'
+  echo .
+  git rev-parse --short master
+  ) | tr -d '\n'
+}
 
 package () {
 	install -dm755 $pkgdir/usr/lib/mabox/mabox-welcome
