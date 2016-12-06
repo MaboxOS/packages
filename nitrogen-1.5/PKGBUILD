@@ -3,7 +3,8 @@
 # Maintainer: Alexander Fehr <pizzapunk gmail com>
 # Contributor: Sebastian Sareyko <public@nooms.de>
 
-pkgname=nitrogen
+pkgname=nitrogen-1.5
+_pkgname=nitrogen
 pkgver=1.5.2
 pkgrel=1
 pkgdesc="Background browser and setter for X windows"
@@ -11,25 +12,27 @@ arch=('i686' 'x86_64')
 url="http://projects.l3ib.org/nitrogen/"
 license=('GPL')
 depends=('gtkmm' 'hicolor-icon-theme' 'librsvg')
-source=(http://projects.l3ib.org/nitrogen/files/${pkgname}-${pkgver}.tar.gz
+provides=('nitrogen=1.5.2')
+conflicts=('nitrogen')
+source=(http://projects.l3ib.org/nitrogen/files/${_pkgname}-${pkgver}.tar.gz
 'nitrogen-1.5.2-X11-linker-flags.patch')
 sha256sums=('60a2437ce6a6c0ba44505fc8066c1973140d4bb48e1e5649f525c7b0b8bf9fd2'
             '3b02aa975f59d04ffff74706471be43b2adb3bcf5b97272be96b864ee30ecda7')
 
 prepare() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_pkgname}-${pkgver}"
   patch -p1 -i ../nitrogen-1.5.2-X11-linker-flags.patch
   autoreconf -fi
 }
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_pkgname}-${pkgver}"
   CXXFLAGS+=' -std=c++11'
   ./configure --prefix=/usr
   make
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_pkgname}-${pkgver}"
   make DESTDIR="${pkgdir}" install
 }
