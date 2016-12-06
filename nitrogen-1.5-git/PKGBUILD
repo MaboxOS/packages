@@ -1,0 +1,43 @@
+# $Id: PKGBUILD 280740 2016-11-15 00:16:38Z eworm $
+# Maintainer: James Rayner <james@archlinux.org>
+# Maintainer: Alexander Fehr <pizzapunk gmail com>
+# Contributor: Sebastian Sareyko <public@nooms.de>
+
+pkgname=nitrogen-1.5-git
+_pkgname=nitrogen
+pkgver=1.5.2.0.g43224a7
+pkgrel=1
+pkgdesc="Background browser and setter for X windows"
+arch=('i686' 'x86_64')
+url="http://projects.l3ib.org/nitrogen/"
+license=('GPL')
+depends=('gtkmm' 'hicolor-icon-theme' 'librsvg')
+provides=('nitrogen=1.5.2')
+conflicts=('nitrogen' 'nitrogen-1.5')
+source=('git://github.com/l3ib/nitrogen.git#tag=1.5.2'
+'nitrogen-1.5.2-X11-linker-flags.patch')
+sha256sums=('SKIP'
+            '3b02aa975f59d04ffff74706471be43b2adb3bcf5b97272be96b864ee30ecda7')
+
+pkgver() {
+  cd nitrogen
+  git describe --tags --long | sed 's/^v//;s/-/./g'
+}
+            
+prepare() {
+  cd nitrogen
+  patch -p1 -i ../nitrogen-1.5.2-X11-linker-flags.patch
+  autoreconf -fi
+}
+
+build() {
+  cd nitrogen
+  CXXFLAGS+=' -std=c++11'
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd nitrogen
+  make DESTDIR="${pkgdir}" install
+}
