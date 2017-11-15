@@ -6,7 +6,7 @@ pkgname=('mabox-java'
 	 'mabox-aur'
          'mabox-lamp'
 )
-arch=('i686' 'x86_64')
+arch=('x86_64')
 pkgver=2016.03
 pkgrel=1
 license=('GPL')
